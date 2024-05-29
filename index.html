@@ -10,6 +10,7 @@
   <p>scriptをオンにしてください</p>
 </noscript>
 <div id="cokie">
+ <p>edited1</p>
 <div id="quizes" align="center">
 <input id="startbutton" style="height:50px; width:500px; background-color:green;"  type="button" onclick="letsquiz()" value="クイズを始める"/>
 </div>
@@ -17,7 +18,7 @@
 <script>
 
  document.cookie="name[][]=[['yuta',2000],['utah',1000]]";
- cokie.innerHTML"document.cookie";
+ cokie.innerHTML=document.cookie;
 
 function letsquiz() {
 let sheeting = document.createElement('div');  //divエレメント作成
