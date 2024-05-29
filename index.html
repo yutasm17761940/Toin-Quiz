@@ -10,17 +10,14 @@
   <p>scriptをオンにしてください</p>
 </noscript>
 
-<p>rokudo</p>
-
-<?php
-echo "<p> これはPHPです </p>";
-?>
- 
 <div id="quizes" align="center">
 <input id="startbutton" style="height:50px; width:500px; background-color:green;"  type="button" onclick="letsquiz()" value="クイズを始める"/>
 </div>
 
 <script>
+
+ document.cookie="name=utah";
+ document.cookie="name=yuta";
 
 function letsquiz() {
 let sheeting = document.createElement('div');  //divエレメント作成
