@@ -13,8 +13,7 @@
 <p>rokudo</p>
 
 <?php
-$text = "HTML内でのPHPスクリプト実行処理";
-echo "<p> $text </p>";
+echo "<p> これはPHPです </p>";
 ?>
  
 <div id="quizes" align="center">
