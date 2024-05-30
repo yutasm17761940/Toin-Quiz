@@ -15,10 +15,11 @@
 <input id="startbutton" style="height:50px; width:500px; background-color:green;"  type="button" onclick="letsquiz()" value="クイズを始める"/>
 </div>
 
-<script>
+<script src="/common/js/js.cookie.js">
 
+ Cookie.set('do','dd');
  document.cookie="name[][]=[['yuta',2000],['utah',1000]]";
- cokie.innerHTML=document.cookie;
+ cokie.innerHTML=Cookie.get('do');
 
 function letsquiz() {
 let sheeting = document.createElement('div');  //divエレメント作成
