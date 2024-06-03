@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <html>
+$ npm i js-cookie
+$ yarn add js-cookie
 <head>
  <style>
 
@@ -15,8 +17,8 @@
 <input id="startbutton" style="height:50px; width:500px; background-color:green;"  type="button" onclick="letsquiz()" value="クイズを始める"/>
 </div>
 
-<script src="/common/js/js.cookie.js">
-
+<script>
+import Cookies from 'js-cookie';
  Cookie.set('do','dd');
  document.cookie="name[][]=[['yuta',2000],['utah',1000]]";
  cokie.innerHTML="hati";
