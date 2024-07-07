@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
  <style>
 
@@ -10,20 +9,16 @@
 <noscript>
   <p>scriptをオンにしてください</p>
 </noscript>
-<div id="cokie"></div>
- <p>edited1</p>
+
 <div id="quizes" align="center">
 <input id="startbutton" style="height:50px; width:500px; background-color:green;"  type="button" onclick="letsquiz()" value="クイズを始める"/>
 </div>
 
 <script>
-import Cookies from 'js-cookie';
- Cookie.set('do','dd');
- document.cookie="name[][]=[['yuta',2000],['utah',1000]]";
- cokie.innerHTML="hati";
+
 
 function letsquiz() {
-let sheeting = document.createElement('div');  //divエレメント作成
+let sheeting = document.createElement('div');  //クイズシート作成(div)　クイズエリア以外への誤タップ防止
 sheeting.id = "sheetings";
 sheeting.style.backgroundColor = '#ffffff';
 sheeting.style.height = '100%';
@@ -33,7 +28,7 @@ sheeting.style.width = '100%';
 sheeting.style.zIndex = '9979';
 sheeting.style.opacity = '0.8';
 
-let flaming = document.createElement("div");
+let flaming = document.createElement("div");  //クイズフレーム作成(div)　クイズに関するすべてを置く場所
 flaming.id = "flamings";
 flaming.style.backgroundColor = '#BD5C8D';
 flaming.style.textAlign = "center";
@@ -46,34 +41,35 @@ flaming.style.top = '10%';
 flaming.style.width = '100%';
 flaming.style.zIndex = '9980';
 
-let yourname = document.createElement("input");
+let yourname = document.createElement("input");  //ユーザーネーム
 yourname.id = "names"
 yourname.setAttribute("type", "text");
 yourname.setAttribute("maxlength", "10");
 yourname.setAttribute("size", "16");
 yourname.setAttribute("value", "");
 
-
-
-let quizstart = document.createElement("button");
+let quizstart = document.createElement("button");  //クイズスタートボタン
 quizstart.type = "button";
 quizstart.innerHTML = "QUIZ START!";
 quizstart.style.backgroundColor = "brown";
 quizstart.onclick = () => {
-  alert(names.value);
+  delete_dom_obj("batubtns");
+  objBody.appendChild(starting);
+  starting.appendChild(batu);
+  batu.appendChild(home);
 };
 
-let batu = document.createElement("div");
+let batu = document.createElement("div");   //サイトに戻るボタンを置く場所(div)
 batu.id = "batubutton";
 batu.style.height = '25px';
 batu.style.right = '2%';
 batu.style.position = 'fixed';
 batu.style.top = '2%';
 batu.style.width = "25px";
-batu.style.zIndex = '9990';
+batu.style.zIndex = '9999';
 batu.style.opacity = '1';
 
-let btns = document.createElement("button");
+let btns = document.createElement("button");  //サイトに戻るボタン
 btns.id = "batubtns";
 btns.style.backgroundColor = "red";
 btns.style.width = "30px";
@@ -81,18 +77,50 @@ btns.style.height = "30px";
 btns.type = "button";
 btns.innerHTML = "＊";
 btns.onclick = () => {
-  let yesno = window.confirm("クイズ止めるんですか？本気っすか！？");
+  let yesno = window.confirm("クイズやめるんですか...？");
   if (yesno) {
     alert("また来てね！！")
-    btns.style.visibility = "hidden";
     delete_dom_obj("sheetings");
     delete_dom_obj("flamings");
-    delete_dom_obj("batu");
-    delete_dom_obj("btns");
+    delete_dom_obj("batubutton");
+    
+
   }
 } ;
 
-let objBody = document.getElementsByTagName("body").item(0);
+let home = document.createElement("button");  //クイズエリアホームに戻るボタン
+home.id = "homes";
+home.style.backgroundColor = "red";
+home.style.width = "30px";
+home.style.height = "30px";
+home.type = "button";
+home.innerHTML = "🏠";
+home.onclick = () => {
+  let yesno = window.confirm("ホームに戻るとスコアは無効になります？");
+  if (yesno) {
+    delete_dom_obj("startings");
+    flaming.appendChild(batu);
+    batu.appendChild(btns);
+    delete_dom_obj("homes");
+  }
+  else {}
+} ;
+
+let starting = document.createElement("div");  //クイズエリア（問題文表示）
+starting.id = "startings";
+starting.style.backgroundColor = '#BD5C8D';
+starting.style.textAlign = "center";
+starting.style.imgAlign = "center";
+starting.style.fontSize = "10px";
+starting.style.height = '100%';
+starting.style.left = '0px';
+starting.style.position = 'fixed';
+starting.style.top = '0%';
+starting.style.width = '100%';
+starting.style.opacity = "1";
+starting.style.zIndex = '9999';
+
+let objBody = document.getElementsByTagName("body").item(0);  //要素を挿入
 objBody.appendChild(sheeting);
 objBody.appendChild(flaming);
 objBody.appendChild(batu);
@@ -102,13 +130,13 @@ batu.appendChild(btns);
 
 }
 
-function delete_dom_obj( id_name ){
+function delete_dom_obj( id_name ){  //jsで作成した要素の削除関数
   let dom_obj = document.getElementById(id_name);
   let dom_obj_parent=dom_obj.parentNode;
   dom_obj_parent.removeChild(dom_obj);
 }
 
-function quizes(num) {
+function quizes(num) {  //クイズ文
   let quiztext = [
     "桐蔭高校の敷地面積は？",
     "桐蔭高校のイメージカラーのカラーナンバーは？",
