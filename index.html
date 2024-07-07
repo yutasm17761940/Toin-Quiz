@@ -43,15 +43,21 @@ flaming.style.zIndex = '9980';
 
 let yourname = document.createElement("input");  //ユーザーネーム
 yourname.id = "names"
+yourname.style.textAlign = "center";
+yourname.style.height = "13%";
+yourname.style.width = "30%";
+yourname.style.fontSize = "38px";
 yourname.setAttribute("type", "text");
 yourname.setAttribute("maxlength", "10");
-yourname.setAttribute("size", "16");
+yourname.setAttribute("size", "100");
 yourname.setAttribute("value", "");
 
 let quizstart = document.createElement("button");  //クイズスタートボタン
 quizstart.type = "button";
 quizstart.innerHTML = "QUIZ START!";
 quizstart.style.backgroundColor = "brown";
+quizstart.style.height = "12%";
+quizstart.style.width = "30%";
 quizstart.onclick = () => {
   delete_dom_obj("batubtns");
   objBody.appendChild(starting);
