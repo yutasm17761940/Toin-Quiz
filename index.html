@@ -1,165 +1,179 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
- <style>
-
- </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>toinQuiz</title>
 </head>
-<body>
-<noscript>
-  <p>scriptをオンにしてください</p>
-</noscript>
+<body align="center" style="background-color: #BD5C8D;">    
+    <div style="background-color: blueviolet; top: 0%; height: 10%; position: fixed; width: 100%; left: 0%; opacity: 0.8; z-index: 100;">
+        <p id = "underbar"></p>
+    </div>
 
-<div id="quizes" align="center">
-<input id="startbutton" style="height:50px; width:500px; background-color:green;"  type="button" onclick="letsquiz()" value="クイズを始める"/>
-</div>
+    <div style="background-color: ; top: 0%; height: 10%; position: fixed; width: 10%; right: 5%; opacity: 1; z-index: 200;">
+        
+        <input style="border: 3px; color: black; font-size: 30px; height: 90%; width: 90%;" type = "button" onclick="quizreset()" value = "⌂">
+    </div>
 
-<script>
-
-
-function letsquiz() {
-let sheeting = document.createElement('div');  //クイズシート作成(div)　クイズエリア以外への誤タップ防止
-sheeting.id = "sheetings";
-sheeting.style.backgroundColor = '#ffffff';
-sheeting.style.height = '100%';
-sheeting.style.position = 'fixed';
-sheeting.style.top = '0px';
-sheeting.style.width = '100%';
-sheeting.style.zIndex = '9979';
-sheeting.style.opacity = '0.8';
-
-let flaming = document.createElement("div");  //クイズフレーム作成(div)　クイズに関するすべてを置く場所
-flaming.id = "flamings";
-flaming.style.backgroundColor = '#BD5C8D';
-flaming.style.textAlign = "center";
-flaming.style.imgAlign = "center";
-flaming.style.fontSize = "10px";
-flaming.style.height = '100%';
-flaming.style.left = '0px';
-flaming.style.position = 'fixed';
-flaming.style.top = '10%';
-flaming.style.width = '100%';
-flaming.style.zIndex = '9980';
-
-let yourname = document.createElement("input");  //ユーザーネーム
-yourname.id = "names"
-yourname.style.textAlign = "center";
-yourname.style.height = "13%";
-yourname.style.width = "30%";
-yourname.style.fontSize = "38px";
-yourname.setAttribute("type", "text");
-yourname.setAttribute("maxlength", "10");
-yourname.setAttribute("size", "100");
-yourname.setAttribute("value", "");
-
-let quizstart = document.createElement("button");  //クイズスタートボタン
-quizstart.type = "button";
-quizstart.innerHTML = "QUIZ START!";
-quizstart.style.backgroundColor = "brown";
-quizstart.style.height = "12%";
-quizstart.style.width = "30%";
-quizstart.onclick = () => {
-  delete_dom_obj("batubtns");
-  objBody.appendChild(starting);
-  starting.appendChild(batu);
-  batu.appendChild(home);
-};
-
-let batu = document.createElement("div");   //サイトに戻るボタンを置く場所(div)
-batu.id = "batubutton";
-batu.style.height = '25px';
-batu.style.right = '2%';
-batu.style.position = 'fixed';
-batu.style.top = '2%';
-batu.style.width = "25px";
-batu.style.zIndex = '9999';
-batu.style.opacity = '1';
-
-let btns = document.createElement("button");  //サイトに戻るボタン
-btns.id = "batubtns";
-btns.style.backgroundColor = "red";
-btns.style.width = "30px";
-btns.style.height = "30px";
-btns.type = "button";
-btns.innerHTML = "＊";
-btns.onclick = () => {
-  let yesno = window.confirm("クイズやめるんですか...？");
-  if (yesno) {
-    alert("また来てね！！")
-    delete_dom_obj("sheetings");
-    delete_dom_obj("flamings");
-    delete_dom_obj("batubutton");
+    <div style="background-color: ; top: 15%; height: 25%; position: fixed; width: 100%; left: 0%; opacity: 1;" >
+        <P id = "questions" style="font-size: 20px;"></P>
+    </div>
     
+    <div style="background-color: ; top: 40%; height: 25%; position: fixed; width: 100%; left: 0%; opacity: 1;">
+         <P id = "explains"></P>
+    </div>
 
-  }
-} ;
+    <div style="background-color: ; top: 70%; height: 30%; position: fixed; width: 100%; left: 0%; opacity: 0.9;">
+        <input id = "gobutton" style="font-size: 40px; height: 40%; width: 60%;" type="button" onclick="letsquiz()" value="クイズを始める">
+        <input id = "yourname" style="height: 20%; width: 60%; text-align: center;" type="text" maxlength="15" value="">
 
-let home = document.createElement("button");  //クイズエリアホームに戻るボタン
-home.id = "homes";
-home.style.backgroundColor = "red";
-home.style.width = "30px";
-home.style.height = "30px";
-home.type = "button";
-home.innerHTML = "🏠";
-home.onclick = () => {
-  let yesno = window.confirm("ホームに戻るとスコアは無効になります？");
-  if (yesno) {
-    delete_dom_obj("startings");
-    flaming.appendChild(batu);
-    batu.appendChild(btns);
-    delete_dom_obj("homes");
-  }
-  else {}
-} ;
+       
+    </div>
 
-let starting = document.createElement("div");  //クイズエリア（問題文表示）
-starting.id = "startings";
-starting.style.backgroundColor = '#BD5C8D';
-starting.style.textAlign = "center";
-starting.style.imgAlign = "center";
-starting.style.fontSize = "10px";
-starting.style.height = '100%';
-starting.style.left = '0px';
-starting.style.position = 'fixed';
-starting.style.top = '0%';
-starting.style.width = '100%';
-starting.style.opacity = "1";
-starting.style.zIndex = '9999';
+    <script>
+        let nowtime = 0;
+        let quiztime = 0;
+        let yourans = 0;
+        let yourscore = 0;
+        let onescore = 0;
+        let topscore = 1000;
+        let sumscore = 0;
+        let underbar = document.getElementById("underbar");
+        let questions = document.getElementById("questions");
+        let explaint = document.getElementById("explains");
+        let gobutton = document.getElementById("gobutton");
+        let yourname = document.getElementById("yourname");
+        
+        if (nowtime == 0) {
+            questions.innerHTML = "桐蔭クイズー";
+            explaint.innerHTML = "名前を入れましょう";
+        }
+        function letsquiz() {
+            
+            if (nowtime == 0) {
+                underbar.innerHTML = "ユーザーネーム：" + yourname.value;
+            }
+            if (nowtime == 0 && yourname.value == "") {
+                explaint.innerHTML = "名前を入力して下さい";
+                nowtime = 0;
+            }
+            else if (quiztime == 10) {
 
-let objBody = document.getElementsByTagName("body").item(0);  //要素を挿入
-objBody.appendChild(sheeting);
-objBody.appendChild(flaming);
-objBody.appendChild(batu);
-flaming.appendChild(yourname);
-flaming.appendChild(quizstart);
-batu.appendChild(btns);
+                quizreset();
+                questions.innerHTML = sumscore;
+            }
+            else if (nowtime % 2 == 1 && yourname.value == "" ) {
+                alert("答えてよ");
+            }
+            else if (nowtime % 2 == 1) {
+                yourans = yourname.value;
+                onescore = topscore / answers(quiztime);
+                if(0 <= yourans && yourans <= answers(quiztime)) {
+                    yourscore = yourans * onescore;
+                }
+                else if (yourans > answers(quiztime)) {
+                    yourscore = topscore - (yourans - answers(quiztime) * onescore);
+                }
+                if (yourscore < 0) {
+                    yourscore = 0;
+                }
+                yourname.value = "";
+                explaint.innerHTML = answers(quiztime)+ tani(quiztime) + "  " + explains(quiztime) + "score" + Math.trunc(yourscore);
+                gobutton.value = "次のクイズ";
+                sumscore += Math.trunc(yourscore);
+                quiztime += 1;
+                nowtime += 1;
+            }
+            else {
+                questions.innerHTML =quiztime+1 + ", " + quizes(quiztime);
+                explaint.innerHTML = "";
+                gobutton.value = "回答";
+                nowtime += 1;
+            }
+            yourname.value = "";
+            
+        } 
 
-}
 
-function delete_dom_obj( id_name ){  //jsで作成した要素の削除関数
-  let dom_obj = document.getElementById(id_name);
-  let dom_obj_parent=dom_obj.parentNode;
-  dom_obj_parent.removeChild(dom_obj);
-}
+        function quizreset() {
+            questions.innerHTML = "桐蔭くいずー";
+            explaint.innerHTML = "名前を入力してね";
+            gobutton.value = "クイズを始める";
+            yourname.value = "";
+            nowtime = 0;
+            quiztime = 0;
+            yourans = 0;
+            
+            
+        }
 
-function quizes(num) {  //クイズ文
-  let quiztext = [
-    "桐蔭高校の敷地面積は？",
-    "桐蔭高校のイメージカラーのカラーナンバーは？",
-    "西側諸国に必要なものは？",
-    "",
-    "",
-  ];
-  return quiztext[num];
-}
-/*
-function ranking() {
-  sort
-}
-*/
-</script>
-
-
-
+        function quizes(num) {  //クイズ文
+        let quiztext = [
+            "桐蔭高校の敷地面積は？",
+            "桐蔭高校のイメージカラーのカラーコードは？",
+            "桐蔭の海抜高度はいくつ？",
+            "1棟1階のショーケースに飾られているメダルの数はいくつ？",
+            "9月で満月が見れるのはいつ？",
+            "桐蔭高校の経度は？",
+            "桐蔭高校の緯度は？",
+            "桐蔭中学校を英語で書くと何文字？",
+            "桐蔭敷地内の桜の木は何本？",
+            "桐蔭高校卒業の直木賞受賞作家は西暦何年に卒業したか",
+            "",
+        ];
+        return quiztext[num];
+        }
+        function answers(num) {
+            let answertext = [
+                "1000",
+                "208497",
+                "39484",
+                "134",
+                "11",
+                "1775",
+                "349",
+                "39597",
+                "9999",
+                "187",
+                "4",
+                "44444",
+            ]
+            return answertext[num];
+        }
+        function tani(num) {
+            let answertext = [
+                "ｍ²",
+                "",
+                "ｍ",
+                "個",
+                "日",
+                "度",
+                "度",
+                "文字",
+                "本",
+                "年",
+                "",
+                "",
+                "",
+            ]
+            return answertext[num];
+        }
+        function explains(num) {
+            let explaintext = [
+                "めっちゃ広い",
+                "カラーコードって何ですか",
+                "思ったより高い",
+                "さす桐",
+                "過ぎてます",
+                "へー",
+                "へー",
+                "中学1年生レベル！？",
+                "多い",
+                "実は卒業生に直木賞受賞作家いるんです",
+                "",
+            ]
+            return explaintext[num];
+        }
+    </script>
 </body>
 </html>
