@@ -77,6 +77,9 @@
                 if (yourscore < 0) {
                     yourscore = 0;
                 }
+                if (yourscore == NaN) {
+                    yourscore = 0;
+                }
                 yourname.value = "";
                 explaint.innerHTML = answers(quiztime)+ tani(quiztime) + "  " + explains(quiztime) + "score" + Math.trunc(yourscore);
                 gobutton.value = "次のクイズ";
