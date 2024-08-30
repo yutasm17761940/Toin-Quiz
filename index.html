@@ -20,18 +20,18 @@
     </div>
     
     <div style="background-color: ; top: 40%; height: 25%; position: fixed; width: 100%; left: 0%; opacity: 1;">
-         <P id = "explains"></P>
+        <input id = "gobutton" style="font-size: 40px; height: 40%; width: 60%;" type="button" onclick="letsquiz()" value="クイズを始める">
+        <input id = "yourname" style="font-size: 16px; height: 20%; width: 60%; text-align: center;" type="text" maxlength="9" value="">
+ 
+        
     </div>
 
     <div style="background-color: ; top: 70%; height: 30%; position: fixed; width: 100%; left: 0%; opacity: 0.9;">
-        <input id = "gobutton" style="font-size: 40px; height: 40%; width: 60%;" type="button" onclick="letsquiz()" value="クイズを始める">
-        <input id = "yourname" style="font-size: 16px; height: 20%; width: 60%; text-align: center;" type="text" maxlength="15" value="">
-
+        <P id = "explains"></P>
        
     </div>
 
     <script>
-        document.addEventListener("dblclick", function(e){ e.preventDefault();}, { passive: false });
         let nowtime = 0;
         let quiztime = 0;
         let yourans = 0;
@@ -39,6 +39,7 @@
         let onescore = 0;
         let topscore = 1000;
         let sumscore = 0;
+        let spe = "  ";
         let underbar = document.getElementById("underbar");
         let questions = document.getElementById("questions");
         let explaint = document.getElementById("explains");
@@ -68,12 +69,12 @@
             }
             else if (nowtime % 2 == 1) {
                 yourans = yourname.value;
-                onescore = topscore / answers(quiztime);
-                if(0 <= yourans && yourans <= answers(quiztime)) {
-                    yourscore = yourans * onescore;
+                
+                if(yourans < answers(quiztime)) {
+                    yourscore = yourans / answers(quiztime);                    
                 }
                 else if (yourans > answers(quiztime)) {
-                    yourscore = topscore - (yourans - answers(quiztime) * onescore);
+                    yourscore = answers(quiztime) / yourans;                    
                 }
                 if (yourscore < 0) {
                     yourscore = 0;
@@ -81,6 +82,9 @@
                 if (yourscore == NaN) {
                     yourscore = 0;
                 }
+                yourscore = yourscore * topscore;
+                
+                
                 yourname.value = "";
                 explaint.innerHTML = answers(quiztime)+ tani(quiztime) + "  " + explains(quiztime) + "score" + Math.trunc(yourscore);
                 gobutton.value = "次のクイズ";
@@ -129,18 +133,18 @@
         }
         function answers(num) {
             let answertext = [
-                "1000",
-                "208497",
-                "39484",
-                "134",
-                "11",
-                "1775",
-                "349",
-                "39597",
-                "9999",
-                "187",
-                "4",
-                "44444",
+                1000,
+                2355,
+                33,
+                134,
+                11,
+                1775,
+                349,
+                39597,
+                9999,
+                187,
+                4,
+                44444,
             ]
             return answertext[num];
         }
